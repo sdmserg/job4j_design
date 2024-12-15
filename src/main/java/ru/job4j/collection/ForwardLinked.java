@@ -33,11 +33,8 @@ public class ForwardLinked<T> implements Iterable<T> {
 
     public T get(int index) {
         Objects.checkIndex(index, size);
-        if (index == 0) {
-            return head.item;
-        }
         Node<T> current = head;
-        for (int i = 0; i < index; i++) {
+        for (int i = 0; i != index; i++) {
             current = current.next;
         }
         return current.item;
