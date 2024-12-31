@@ -41,14 +41,53 @@ public class SimpleTreeTest {
         assertThat(tree.add(4, 5)).isFalse();
     }
 
-   @Test
+    @Test
     void whehAdd3ChildrenThenChildrenSizeis3() {
-       Tree<Integer> tree = new SimpleTree<>(1);
-       tree.add(1, 2);
-       tree.add(2, 3);
-       tree.add(2, 4);
-       tree.add(2, 5);
-       tree.add(3, 6);
-       assertThat(tree.findBy(2).get().children).hasSize(3);
-   }
+        Tree<Integer> tree = new SimpleTree<>(1);
+        tree.add(1, 2);
+        tree.add(2, 3);
+        tree.add(2, 4);
+        tree.add(2, 5);
+        tree.add(3, 6);
+        assertThat(tree.findBy(2).get().children).hasSize(3);
+    }
+
+    @Test
+    void when3ChildrenThenBinaryIsFalse() {
+        SimpleTree<Integer> tree = new SimpleTree<>(1);
+        tree.add(1, 2);
+        tree.add(1, 3);
+        tree.add(2, 4);
+        tree.add(2, 5);
+        tree.add(2, 6);
+        assertThat(tree.isBinary()).isFalse();
+    }
+
+    @Test
+    void whenTreeIsBinaryThenTrue() {
+        SimpleTree<Integer> tree = new SimpleTree<>(1);
+        tree.add(1, 2);
+        tree.add(1, 3);
+        tree.add(2, 4);
+        tree.add(2, 5);
+        tree.add(3, 6);
+        tree.add(6, 7);
+        tree.add(6, 8);
+        tree.add(5, 9);
+        tree.add(5, 11);
+        assertThat(tree.isBinary()).isTrue();
+    }
+
+    @Test
+    void when1ChildrenThenBinaryIsTrue() {
+        SimpleTree<Integer> tree = new SimpleTree<>(1);
+        tree.add(1, 2);
+        assertThat(tree.isBinary()).isTrue();
+    }
+
+    @Test
+    void whenChildrenDoesNotExistThenBinaryIsTrue() {
+        SimpleTree<Integer> tree = new SimpleTree<>(1);
+        assertThat(tree.isBinary()).isTrue();
+    }
 }
