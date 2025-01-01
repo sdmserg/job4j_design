@@ -21,7 +21,7 @@ public class LogFilter {
             result = input.lines()
                     .filter(string -> {
                         String[] array = string.split(" ");
-                        return array[array.length - 2].equals("404");
+                        return "404".equals(array[array.length - 2]);
                     })
                     .collect(Collectors.toList());
 
