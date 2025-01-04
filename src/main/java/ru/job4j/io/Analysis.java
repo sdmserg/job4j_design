@@ -35,7 +35,7 @@ public class Analysis {
                     interval.setLength(0);
                 }
             }
-            if (interval.isEmpty()) {
+            if (!interval.isEmpty()) {
                 intervals.add(interval.toString());
             }
         } catch (IOException e) {
