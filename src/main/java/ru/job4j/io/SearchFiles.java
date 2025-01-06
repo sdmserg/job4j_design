@@ -13,7 +13,7 @@ public class SearchFiles implements FileVisitor<Path> {
 
     private final Predicate<Path> condition;
 
-    List<Path> result = new ArrayList<>();
+    private final List<Path> result = new ArrayList<>();
 
     public SearchFiles(Predicate<Path> condition) {
         this.condition = condition;
