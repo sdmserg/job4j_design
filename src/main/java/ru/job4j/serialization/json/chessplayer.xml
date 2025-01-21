@@ -1,0 +1,10 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<chessplayer name="Magnus Carlsen" age="34">
+    <isActive>true</isActive>
+    <contact phone="+7(924)111-111-11-11" />
+    <formats>
+        <format>blitz</format>
+        <format>rapid</format>
+        <format>classical</format>
+    </formats>
+</chessplayer>
