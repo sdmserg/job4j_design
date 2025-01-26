@@ -1,11 +1,7 @@
 package ru.job4j.serialization.json;
 
-import jakarta.xml.bind.annotation.*;
-
-@XmlRootElement(name = "contact")
 public class Contact {
 
-    @XmlAttribute
     private String phone;
 
     public Contact() {
@@ -21,5 +17,9 @@ public class Contact {
         return "Contact{"
                 + "phone='" + phone + '\''
                 + "}";
+    }
+
+    public String getPhone() {
+        return phone;
     }
 }

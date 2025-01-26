@@ -1,23 +1,17 @@
 package ru.job4j.serialization.json;
 
 import java.util.Arrays;
-import jakarta.xml.bind.annotation.*;
 
-@XmlRootElement(name = "chessplayer")
-@XmlAccessorType(XmlAccessType.FIELD)
 public class ChessPlayer {
 
-    @XmlAttribute
     private String name;
 
-    @XmlAttribute
     private int age;
 
     private boolean isActive;
 
     private Contact contact;
 
-    @XmlElementWrapper(name = "formats")
     private String[] formats;
 
     public ChessPlayer() {
@@ -31,6 +25,26 @@ public class ChessPlayer {
         this.isActive = isActive;
         this.contact = contact;
         this.formats = formats;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public String[] getFormats() {
+        return formats;
     }
 
     @Override
