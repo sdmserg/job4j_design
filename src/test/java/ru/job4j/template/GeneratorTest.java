@@ -13,9 +13,9 @@ public class GeneratorTest {
     public void whenTemplateContainsKeysAndMapHasAllKeysThenReturnString() {
         Generator generator = new StringGenerator();
         String template = "I am a ${name}, Who are ${subject}?";
-        Map<String, String> args = Map.of("name", "Sergey", "subject", "you");
+        Map<String, String> args = Map.of("name", "Sergei", "subject", "you");
         String result = generator.produce(template, args);
-        String expected = "I am a Sergey, Who are you?";
+        String expected = "I am a Sergei, Who are you?";
         assertThat(result).isEqualTo(expected);
     }
 
@@ -23,7 +23,7 @@ public class GeneratorTest {
     public void whenTemplateContainsKeysAndMapHasExtraKeysThenException() {
         Generator generator = new StringGenerator();
         String template = "I am a ${name}, Who are you?";
-        Map<String, String> args = Map.of("name", "Sergey", "subject", "you");
+        Map<String, String> args = Map.of("name", "Sergei", "subject", "you");
         assertThatThrownBy(() -> generator.produce(template, args))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -32,7 +32,16 @@ public class GeneratorTest {
     public void whenTemplateContainsKeysAndMapHasFewerKeysThenException() {
         Generator generator = new StringGenerator();
         String template = "I am a ${name}, Who are Who are ${subject}?";
-        Map<String, String> args = Map.of("name", "Sergey");
+        Map<String, String> args = Map.of("name", "Sergei");
+        assertThatThrownBy(() -> generator.produce(template, args))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    public void whenTemplateContainsKeysAndMapHasFewerKeysThenException2() {
+        Generator generator = new StringGenerator();
+        String template = "I am a ${name}, Who are Who are ${subject}?";
+        Map<String, String> args = Map.of("name", "Sergei");
         assertThatThrownBy(() -> generator.produce(template, args))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -58,8 +67,17 @@ public class GeneratorTest {
     @Test
     public void whenTemplateWithoutKeysThenException() {
         Generator generator = new StringGenerator();
-        String template = "I am a Sergey, Who are Who are you?";
-        Map<String, String> args = Map.of("name", "Sergey", "subject", "you");
+        String template = "I am a Sergei, Who are Who are you?";
+        Map<String, String> args = Map.of("name", "Sergei", "subject", "you");
+        assertThatThrownBy(() -> generator.produce(template, args))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    public void whenTemplateWithoutKeysThenException2() {
+        Generator generator = new StringGenerator();
+        String template = "I am a Sergei, Who are Who are you?";
+        Map<String, String> args = Map.of("name", "Sergei", "subject", "you");
         assertThatThrownBy(() -> generator.produce(template, args))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -68,7 +86,7 @@ public class GeneratorTest {
     public void whenTemplateIsNullThenException() {
         Generator generator = new StringGenerator();
         String template = null;
-        Map<String, String> args = Map.of("name", "Sergey", "subject", "you");
+        Map<String, String> args = Map.of("name", "Sergei", "subject", "you");
         assertThatThrownBy(() -> generator.produce(template, args))
                 .isInstanceOf(IllegalArgumentException.class);
     }
